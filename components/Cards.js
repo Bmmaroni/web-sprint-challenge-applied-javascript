@@ -28,12 +28,10 @@ axios
     .then(res => {
         console.log('Response: ', res.data);
         const articles = Object.keys(res.data.articles);
-        articles.forEach(topic => {
-            res.data.articles[topic]
-            console.log(cardMaker);
-            // .forEach(a => {
-            //     cardsContainer.appendChild(cardMaker(a))});
-        });
+        articles.forEach(topic =>
+            res.data.articles[topic].forEach(article =>
+                cardsContainer.appendChild(cardMaker(article))),
+        )
     })
     .catch(err => {
         console.log('Error: ', err);
@@ -66,4 +64,6 @@ axios
         card.addEventListener('click', (e) => {
             console.log(headline);
         });
+
+        return card;
     };
